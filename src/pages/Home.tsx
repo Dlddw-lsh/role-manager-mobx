@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Layout, Button, theme } from "antd";
 import LeftMenu from "../component/LeftMenu";
+import { Outlet } from "react-router-dom";
 
 const { Header, Sider, Content } = Layout;
 
@@ -40,7 +41,7 @@ function Home() {
               borderRadius: borderRadiusLG,
             }}
           >
-            Content
+            <Outlet />
           </Content>
         </Layout>
       </Layout>

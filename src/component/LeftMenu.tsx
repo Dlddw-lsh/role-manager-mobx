@@ -2,7 +2,7 @@ import { Menu } from "antd";
 import { observer } from "mobx-react";
 import userStore from "../store/userStore";
 import * as Icon from "@ant-design/icons";
-import { Children } from "react";
+import { Link } from "react-router-dom";
 
 function LeftMenu() {
   // 1.拿到mobx中user存储的menuInfo
@@ -10,27 +10,27 @@ function LeftMenu() {
   const user = new userStore();
   const createMenu = (menuList: any) => {
     let arr = [];
-    menuList.map((item: any) => {
-      // 从所有的里面选出图标
-      const menu = item.menu;
-      const ICON = Icon[menu.icon];
-      if (item.children && item.children.length > 0) {
-        arr.push({
-          key: menu.menuId,
-          icon: <ICON />,
-          label: menu.title,
-          children: [...createMenu(item.children)],
-        });
-      } else {
-        arr.push({
-          key: menu.menuId,
-          icon: <ICON />,
-          label: menu.title,
-        });
-      }
-
-      console.log(item);
-    });
+    if (menuList && menuList.length > 0) {
+      menuList.map((item: any) => {
+        // 从所有的里面选出图标
+        const menu = item.menu;
+        const ICON = Icon[menu.icon];
+        if (item.children && item.children.length > 0) {
+          arr.push({
+            key: menu.menuId,
+            icon: <ICON />,
+            label: menu.title,
+            children: [...createMenu(item.children)],
+          });
+        } else {
+          arr.push({
+            key: menu.menuId,
+            icon: <ICON />,
+            label: <Link to={menu.menuUrl}>{menu.title}</Link>,
+          });
+        }
+      });
+    }
     return arr;
   };
 

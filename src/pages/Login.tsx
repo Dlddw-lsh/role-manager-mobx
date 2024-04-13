@@ -10,7 +10,6 @@ function Login() {
   const navigate = useNavigate();
 
   const onFinish: FormProps<User>["onFinish"] = (values: User) => {
-    console.log("Success:", values);
     // 发起请求的过程 在mobx中的action中进行
     const user = new userStore();
     user.login(values).then((data: any)=>{

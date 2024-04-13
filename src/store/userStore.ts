@@ -33,7 +33,6 @@ class userStore {
     return new Promise((resolve, reject) => {
       login(user)
         .then((data: any) => {
-          console.log(data);
           this.user = data.data;
           resolve(data);
         })
