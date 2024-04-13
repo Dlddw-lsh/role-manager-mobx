@@ -1,7 +1,10 @@
+import { BrowserRouter as Router } from "react-router-dom";
+import PrivateRoute from "../component/PrivateRoute";
+
 export default function App() {
   return (
-    <div>
-      <h2>权限管理</h2>
-    </div>
+    <Router>
+      <PrivateRoute />
+    </Router>
   );
 }
